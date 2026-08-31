@@ -1,0 +1,528 @@
+package server.model.players;
+
+import server.Config;
+import server.Server;
+import server.model.objects.Object;
+import server.util.Misc;
+public class ActionHandler {
+	
+	private Client c;
+	
+	public ActionHandler(Client Client) {
+		this.c = Client;
+	}
+	
+	
+	public void firstClickObject(int objectType, int obX, int obY) {
+		c.clickObjectType = 0;
+		//c.sendMessage("Object type: " + objectType);
+		switch(objectType) {
+		case 2492:
+			if (c.killCount >= 20) {
+				c.getDH().sendOption4("Armadyl", "Bandos", "Saradomin", "Zamorak");
+				c.dialogueAction = 20;
+			} else {
+				c.sendMessage("You need 20 kill count before teleporting to a boss chamber.");
+			}
+		break;
+		
+		case 1765:
+			c.getPA().movePlayer(3067, 10256, 0);
+		break;
+		case 2882:
+		case 2883:
+			if (c.objectX == 3268) {
+				if (c.absX < c.objectX) {
+					c.getPA().walkTo(1,0);
+				} else {
+					c.getPA().walkTo(-1,0);
+				}
+			}
+		break;
+		case 272:
+			c.getPA().movePlayer(c.absX, c.absY, 1);
+		break;
+		
+		case 273:
+			c.getPA().movePlayer(c.absX, c.absY, 0);
+		break;
+		case 245:
+			c.getPA().movePlayer(c.absX, c.absY + 2, 2);
+		break;
+		case 246:
+			c.getPA().movePlayer(c.absX, c.absY - 2, 1);
+		break;
+		case 1766:
+			c.getPA().movePlayer(3016, 3849, 0);
+		break;
+		case 6552:
+			if (c.playerMagicBook == 0) {
+				c.playerMagicBook = 1;
+				c.setSidebarInterface(6, 12855);
+				c.sendMessage("An ancient wisdomin fills your mind.");
+				c.getPA().resetAutocast();
+			} else {
+				c.setSidebarInterface(6, 1151); //modern
+				c.playerMagicBook = 0;
+				c.sendMessage("You feel a drain on your memory.");
+				c.autocastId = -1;
+				c.getPA().resetAutocast();
+			}	
+		break;
+		
+		case 1816:
+			c.getPA().startTeleport2(2271, 4680, 0);			
+		break;
+		case 1817:
+			c.getPA().startTeleport(3067, 10253, 0, "modern");
+		break;
+		case 1814:
+			//ardy lever
+			c.getPA().startTeleport(3153, 3923, 0, "modern");
+		break;
+		case 1733:
+			c.getPA().movePlayer(c.absX, c.absY + 6393, 0);
+		break;
+		
+		case 1734:
+			c.getPA().movePlayer(c.absX, c.absY - 6396, 0);
+		break;
+		
+		case 8959:
+			if (c.getX() == 2490 && (c.getY() == 10146 || c.getY() == 10148)) {
+				if (c.getPA().checkForPlayer(2490, c.getY() == 10146 ? 10148 : 10146)) {
+					new Object(6951, c.objectX, c.objectY, c.heightLevel, 1, 10, 8959, 15);	
+				}			
+			}
+		break;
+		
+		case 2213:
+		case 14367:
+		case 11758:
+		case 3193:
+			c.getPA().openUpBank();
+		break;
+		
+		case 10177:
+			c.getPA().movePlayer(1890, 4407, 0);
+		break;
+		case 10230:
+			c.getPA().movePlayer(2900, 4449, 0);
+		break;
+		case 10229:
+			c.getPA().movePlayer(1912, 4367, 0);
+		break;
+		case 2623:
+			if (c.absX >= c.objectX)
+				c.getPA().walkTo(-1,0);
+			else
+				c.getPA().walkTo(1,0);
+		break;
+		case 1596:
+		case 1597:
+		if (c.getY() >= c.objectY)
+			c.getPA().walkTo(0,-1);
+		else
+			c.getPA().walkTo(0,1);
+		break;
+		
+		case 14235:
+		case 14233:
+			if (c.objectX == 2670)
+				if (c.absX <= 2670)
+					c.absX = 2671;
+				else
+					c.absX = 2670;
+			if (c.objectX == 2643)
+				if (c.absX >= 2643)
+					c.absX = 2642;
+				else
+					c.absX = 2643;
+			if (c.absX <= 2585)
+				c.absY += 1;
+			else c.absY -= 1;
+			c.getPA().movePlayer(c.absX, c.absY, 0);
+		break;
+		
+		case 14829: case 14830: case 14827: case 14828: case 14826: case 14831:
+			//Server.objectHandler.startObelisk(objectType);
+			Server.objectManager.startObelisk(objectType);
+		break;
+// DOORS
+		case 1516:
+		case 1519:
+			if (c.objectY == 9698) {
+				if (c.absY >= c.objectY)
+					c.getPA().walkTo(0,-1);
+				else
+					c.getPA().walkTo(0,1);
+				break;
+			}
+		case 1530:
+		case 1531:
+		case 1533:
+		case 1534:
+		case 11712:
+		case 11711:
+		case 11707:
+		case 11708:
+		case 6725:
+		case 3198:
+		case 3197:
+			Server.objectHandler.doorHandling(objectType, c.objectX, c.objectY, 0);	
+			break;
+		
+		case 9319:
+			if (c.heightLevel == 0)
+				c.getPA().movePlayer(c.absX, c.absY, 1);
+			else if (c.heightLevel == 1)
+				c.getPA().movePlayer(c.absX, c.absY, 2);
+		break;
+		
+		case 9320:
+			if (c.heightLevel == 1)
+				c.getPA().movePlayer(c.absX, c.absY, 0);
+			else if (c.heightLevel == 2)
+				c.getPA().movePlayer(c.absX, c.absY, 1);
+		break;
+		
+		case 4496:
+		case 4494:
+			if (c.heightLevel == 2) {
+				c.getPA().movePlayer(c.absX - 5, c.absY, 1);
+			} else if (c.heightLevel == 1) {
+				c.getPA().movePlayer(c.absX + 5, c.absY, 0);
+			}
+		break;
+		
+		case 4493:
+			if (c.heightLevel == 0) {
+				c.getPA().movePlayer(c.absX - 5, c.absY, 1);
+			} else if (c.heightLevel == 1) {
+				c.getPA().movePlayer(c.absX + 5, c.absY, 2);
+			}
+		break;
+		
+		case 4495:
+			if (c.heightLevel == 1) {
+				c.getPA().movePlayer(c.absX + 5, c.absY, 2);
+			}
+		break;
+		
+		case 5126:
+			if (c.absY == 3554)
+				c.getPA().walkTo(0,1);
+			else
+				c.getPA().walkTo(0,-1);
+		break;
+		
+		case 1755:
+			if (c.objectX == 2884 && c.objectY == 9797)
+				c.getPA().movePlayer(c.absX, c.absY - 6400, 0);	
+		break;
+		case 1759:
+			if (c.objectX == 2884 && c.objectY == 3397)
+				c.getPA().movePlayer(c.absX, c.absY + 6400, 0);				
+		break;
+		/*case 3203: //dueling forfeit
+			if (c.duelCount > 0) {
+				c.sendMessage("You may not forfeit yet.");
+				break;
+			}
+			Client o = (Client) Server.playerHandler.players[c.duelingWith];				
+			if(o == null) {
+				c.getTradeAndDuel().resetDuel();
+				c.getPA().movePlayer(Config.DUELING_RESPAWN_X+(Misc.random(Config.RANDOM_DUELING_RESPAWN)), Config.DUELING_RESPAWN_Y+(Misc.random(Config.RANDOM_DUELING_RESPAWN)), 0);
+				break;
+			}
+			if(c.duelRule[0]) {
+				c.sendMessage("Forfeiting the duel has been disabled!");
+				break;
+			}
+			if(o != null) {
+				o.getPA().movePlayer(Config.DUELING_RESPAWN_X+(Misc.random(Config.RANDOM_DUELING_RESPAWN)), Config.DUELING_RESPAWN_Y+(Misc.random(Config.RANDOM_DUELING_RESPAWN)), 0);
+				c.getPA().movePlayer(Config.DUELING_RESPAWN_X+(Misc.random(Config.RANDOM_DUELING_RESPAWN)), Config.DUELING_RESPAWN_Y+(Misc.random(Config.RANDOM_DUELING_RESPAWN)), 0);
+				o.duelStatus = 6;
+				o.getTradeAndDuel().duelVictory();
+				c.getTradeAndDuel().resetDuel();
+				c.getTradeAndDuel().resetDuelItems();
+				o.sendMessage("The other player has forfeited the duel!");
+				c.sendMessage("You forfeit the duel!");
+				break;
+			}
+			
+			break;*/
+			
+		case 409:
+			if(c.playerLevel[5] < c.getPA().getLevelForXP(c.playerXP[5])) {
+				c.startAnimation(645);
+				c.playerLevel[5] = c.getPA().getLevelForXP(c.playerXP[5]);
+				c.sendMessage("You recharge your prayer points.");
+				c.getPA().refreshSkill(5);
+			} else {
+				c.sendMessage("You already have full prayer points.");
+			}
+			break;
+		case 2873:
+			if (!c.getItems().ownsCape()) {
+				c.startAnimation(645);
+				c.sendMessage("Saradomin blesses you with a cape.");
+				c.getItems().addItem(2412, 1);
+			}	
+		break;
+		case 2875:
+			if (!c.getItems().ownsCape()) {
+				c.startAnimation(645);
+				c.sendMessage("Guthix blesses you with a cape.");
+				c.getItems().addItem(2413, 1);
+			}
+		break;
+		case 2874:
+			if (!c.getItems().ownsCape()) {
+				c.startAnimation(645);
+				c.sendMessage("Zamorak blesses you with a cape.");
+				c.getItems().addItem(2414, 1);
+			}
+		break;
+		case 2879:
+			c.getPA().movePlayer(2538, 4716, 0);
+		break;
+		case 2878:
+			c.getPA().movePlayer(2509, 4689, 0);
+		break;
+		case 5960:
+			c.getPA().startTeleport2(3090, 3956, 0);
+		break;
+		
+		case 1815:
+			c.getPA().startTeleport2(Config.EDGEVILLE_X, Config.EDGEVILLE_Y, 0);
+		break;
+		
+		case 9706:
+			c.getPA().startTeleport2(3105, 3951, 0);
+		break;
+		case 9707:
+			c.getPA().startTeleport2(3105, 3956, 0);
+		break;
+		
+		case 5959:
+			c.getPA().startTeleport2(2539, 4712, 0);
+		break;
+		
+		case 2558:
+			c.sendMessage("This door is locked.");	
+		break;
+		
+		case 9294:
+			if (c.absX < c.objectX) {
+				c.getPA().movePlayer(c.objectX + 1, c.absY, 0);
+			} else if (c.absX > c.objectX) {
+				c.getPA().movePlayer(c.objectX - 1, c.absY, 0);
+			}
+		break;
+		
+		case 9293:
+			if (c.absX < c.objectX) {
+				c.getPA().movePlayer(2892, 9799, 0);
+			} else {
+				c.getPA().movePlayer(2886, 9799, 0);
+			}
+		break;
+		case 10529:
+		case 10527:
+			if (c.absY <= c.objectY)
+				c.getPA().walkTo(0,1);
+			else
+				c.getPA().walkTo(0,-1);
+		break;
+case 733:
+			c.startAnimation(451);
+			/*if (Misc.random(1) == 1) {
+				c.getPA().removeObject(c.objectX, c.objectY);
+				c.sendMessage("You slash the web.");
+			} else {
+				c.sendMessage("You fail to slash the webs.");
+			}*/
+			if (c.objectX == 3158 && c.objectY == 3951) {
+				new Object(734, c.objectX, c.objectY, c.heightLevel, 1, 10, 733, 50);
+			} else {
+				new Object(734, c.objectX, c.objectY, c.heightLevel, 0, 10, 733, 50);
+			}
+		break;
+		
+		default:
+			break;
+
+		}
+	}
+	
+	public void secondClickObject(int objectType, int obX, int obY) {
+		c.clickObjectType = 0;
+		//c.sendMessage("Object type: " + objectType);
+		switch(objectType) {
+			case 11666:
+case 2213:
+			case 14367:
+			case 11758:
+				c.getPA().openUpBank();
+			break;
+case 2558:
+				if (System.currentTimeMillis() - c.lastLockPick < 3000 || c.freezeTimer > 0)
+					break;
+				if (c.getItems().playerHasItem(1523,1)) {
+						c.lastLockPick = System.currentTimeMillis();
+						if (Misc.random(10) <= 3){
+							c.sendMessage("You fail to pick the lock.");
+							break;
+						}
+					if (c.objectX == 3044 && c.objectY == 3956) {
+						if (c.absX == 3045) {
+							c.getPA().walkTo2(-1,0);
+						} else if (c.absX == 3044) {
+							c.getPA().walkTo2(1,0);
+						}
+					
+					} else if (c.objectX == 3038 && c.objectY == 3956) {
+						if (c.absX == 3037) {
+							c.getPA().walkTo2(1,0);
+						} else if (c.absX == 3038) {
+							c.getPA().walkTo2(-1,0);
+						}				
+					} else if (c.objectX == 3041 && c.objectY == 3959) {
+						if (c.absY == 3960) {
+							c.getPA().walkTo2(0,-1);
+						} else if (c.absY == 3959) {
+							c.getPA().walkTo2(0,1);
+						}					
+					}
+				} else {
+					c.sendMessage("I need a lockpick to pick this lock.");
+				}
+			break;
+		default:
+			break;
+		}
+	}
+	
+	
+	public void thirdClickObject(int objectType, int obX, int obY) {
+		c.clickObjectType = 0;
+		c.sendMessage("Object type: " + objectType);
+		switch(objectType) {
+		default:
+			break;
+		}
+	}
+	
+	public void firstClickNpc(int npcType) {
+		c.clickNpcType = 0;
+		c.npcClickIndex = 0;
+		switch(npcType) {
+			case 706:
+				c.getDH().sendDialogues(9, npcType);
+			break;
+case 541:
+				c.getShops().openShop(5);
+			break;
+			
+			case 461:
+				c.getShops().openShop(2);
+			break;
+			
+			case 683:
+				c.getShops().openShop(3);
+			break;
+			
+			case 549:
+				c.getShops().openShop(4);
+			break;
+			
+			case 2538:
+				c.getShops().openShop(6);
+			break;
+case 1152:
+				c.getDH().sendDialogues(16,npcType);
+			break;
+			case 494:
+				c.getPA().openUpBank();
+			break;
+			case 2566:
+				c.getShops().openSkillCape();
+			break;
+case 460:
+				c.getDH().sendDialogues(3, npcType);
+			break;
+			case 462:
+				c.getDH().sendDialogues(7, npcType);
+			break;
+case 522:
+			case 523:
+				c.getShops().openShop(1);
+			break;
+			case 599:
+				c.getPA().showInterface(3559);
+				c.canChangeAppearance = true;
+			break;
+default:
+			if(c.playerRights == 3) 
+				Misc.println("First Click Npc : "+npcType);
+			break;
+		}
+	}
+
+	public void secondClickNpc(int npcType) {
+		c.clickNpcType = 0;
+		c.npcClickIndex = 0;
+		switch(npcType) {
+case 494:
+				c.getPA().openUpBank();
+			break;
+case 522:
+			case 523:
+				c.getShops().openShop(1);
+			break;
+			case 541:
+				c.getShops().openShop(5);
+			break;
+			
+			case 461:
+				c.getShops().openShop(2);
+			break;
+			
+			case 683:
+				c.getShops().openShop(3);
+			break;
+			
+			case 549:
+				c.getShops().openShop(4);
+			break;
+			
+			case 2538:
+				c.getShops().openShop(6);
+			break;
+case 1:
+			case 9:
+			case 18:
+			case 20:
+default:
+				if(c.playerRights == 3) 
+					Misc.println("Second Click Npc : "+npcType);
+				break;
+			
+		}
+	}
+	
+	public void thirdClickNpc(int npcType) {
+		c.clickNpcType = 0;
+		c.npcClickIndex = 0;
+		switch(npcType) {
+			default:
+				if(c.playerRights == 3) 
+					Misc.println("Third Click NPC : "+npcType);
+				break;
+
+		}
+	}
+	
+
+}
