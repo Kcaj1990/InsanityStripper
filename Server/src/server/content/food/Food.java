@@ -1,4 +1,6 @@
-package server.model.players;
+package server.content.food;
+
+import server.model.players.Client;
 
 import java.util.HashMap;
 

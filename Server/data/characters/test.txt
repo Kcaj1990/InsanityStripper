@@ -84,7 +84,6 @@ character-item = 5	559	600
 character-item = 6	1382	1
 character-item = 7	1324	1
 character-item = 9	883	500
-character-item = 10	380	1
 character-item = 12	380	1
 character-item = 13	380	1
 character-item = 14	380	1
