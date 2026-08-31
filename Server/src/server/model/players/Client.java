@@ -8,6 +8,7 @@ import org.apache.mina.common.IoSession;
 
 import server.Config;
 import server.Server;
+import server.content.dialogue.DialogueHandler;
 import server.model.items.ItemAssistant;
 import server.model.shops.ShopAssistant;
 import server.net.HostList;

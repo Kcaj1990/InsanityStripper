@@ -1,4 +1,6 @@
-package server.model.players;
+package server.content.dialogue;
+
+import server.model.players.Client;
 
 public class DialogueHandler {
 
