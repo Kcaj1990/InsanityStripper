@@ -1,3 +1,17 @@
+# Compiled output
 Server/bin/
-*.class
 Client/bin/
+out/
+*.class
+
+# IntlliJ IDEA
+.idea/
+*.iml
+
+# Runetime server data
+Server/data/characters/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
