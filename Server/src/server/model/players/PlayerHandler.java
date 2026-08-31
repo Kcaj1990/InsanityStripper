@@ -5,6 +5,7 @@ import java.net.InetSocketAddress;
 import server.Config;
 import server.Server;
 import server.model.npcs.NPCHandler;
+import server.persistence.player.PlayerSave;
 import server.util.Misc;
 import server.util.Stream;
 
@@ -122,7 +123,7 @@ public class PlayerHandler{
 							}
 						}
 						Client o = (Client) Server.playerHandler.players[i];
-						if(PlayerSave.saveGame(o)) { 
+						if(PlayerSave.saveGame(o)) {
 							System.out.println("Game saved for player "+players[i].playerName); 
 						} else { 
 							System.out.println("Could not save for "+players[i].playerName); 

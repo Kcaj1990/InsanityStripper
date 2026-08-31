@@ -4,13 +4,13 @@ character-password = 116101115116
 
 [CHARACTER]
 character-height = 0
-character-posx = 3088
-character-posy = 3498
+character-posx = 3105
+character-posy = 3508
 character-rights = 0
 crystal-bow-shots = 0
 skull-timer = 0
 magic-book = 0
-special-amount = 1.0
+special-amount = 5.5
 teleblock-length = 0
 autoRet = 0
 flagged = false
@@ -21,7 +21,7 @@ fightMode = 0
 character-equip = 0	-1	1	
 character-equip = 1	-1	1	
 character-equip = 2	-1	1	
-character-equip = 3	-1	0	
+character-equip = 3	841	1	
 character-equip = 4	-1	1	
 character-equip = 5	-1	1	
 character-equip = 6	-1	0	
@@ -54,7 +54,7 @@ character-skill = 1	1	0
 character-skill = 2	1	0
 character-skill = 3	10	1300
 character-skill = 4	1	0
-character-skill = 5	1	0
+character-skill = 5	0	0
 character-skill = 6	1	0
 character-skill = 7	1	0
 character-skill = 8	1	0
@@ -77,17 +77,14 @@ character-skill = 24	1	0
 
 [ITEMS]
 character-item = 0	996	100000
-character-item = 1	1732	1
 character-item = 2	555	200
 character-item = 3	556	200
 character-item = 4	557	200
 character-item = 5	559	600
 character-item = 6	1382	1
 character-item = 7	1324	1
-character-item = 8	842	1
 character-item = 9	883	500
 character-item = 10	380	1
-character-item = 11	380	1
 character-item = 12	380	1
 character-item = 13	380	1
 character-item = 14	380	1
@@ -106,6 +103,7 @@ character-item = 26	380	1
 character-item = 27	380	1
 
 [BANK]
+character-bank = 0	1732	1
 
 [FRIENDS]
 

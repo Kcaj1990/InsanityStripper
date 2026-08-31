@@ -1,13 +1,13 @@
-package server.model.players;
+package server.persistence.player;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
 import server.Server;
+import server.model.players.Client;
 import server.util.Misc;
 
 public class PlayerSave

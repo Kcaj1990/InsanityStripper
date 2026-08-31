@@ -13,7 +13,7 @@ import server.Connection;
 import server.Server;
 import server.model.players.Client;
 import server.model.players.PlayerHandler;
-import server.model.players.PlayerSave;
+import server.persistence.player.PlayerSave;
 import server.util.ISAACRandomGen;
 
 /**

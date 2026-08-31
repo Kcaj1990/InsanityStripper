@@ -14,7 +14,7 @@ import server.model.npcs.NPCDrops;
 import server.model.players.PlayerHandler;
 import server.model.players.Player;
 import server.model.players.Client;
-import server.model.players.PlayerSave;
+import server.persistence.player.PlayerSave;
 import server.net.ConnectionHandler;
 import server.net.ConnectionThrottleFilter;
 import server.util.SimpleTimer;

@@ -3,8 +3,8 @@ package server.model.players;
 import server.Config;
 import server.Server;
 import server.model.npcs.NPCHandler;
+import server.persistence.player.PlayerSave;
 import server.util.Misc;
-import server.world.map.VirtualWorld;
 
 
 public class PlayerAssistant{
