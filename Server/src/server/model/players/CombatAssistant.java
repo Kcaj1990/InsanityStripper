@@ -569,11 +569,6 @@ public class CombatAssistant{
 				return;
 			}
 			
-			/*if (c.teleTimer > 0 || Server.playerHandler.players[i].teleTimer > 0) {
-				resetPlayerAttack();
-				return;
-			}*/
-			
 			if(!c.getCombat().checkReqs()) {
 				return;
 			}
@@ -622,12 +617,7 @@ public class CombatAssistant{
 					c.attackTimer = 0;
 					return;
 				}
-				
-				/*if ((c.inPirateHouse() && !Server.playerHandler.players[i].inPirateHouse()) || (Server.playerHandler.players[i].inPirateHouse() && !c.inPirateHouse())) {
-					resetPlayerAttack();
-					return;
-				}*/
-				//c.sendMessage("Made it here1.");
+
 				if(!c.usingMagic) {
 					for (int bowId : c.BOWS) {
 						if(c.playerEquipment[c.playerWeapon] == bowId) {

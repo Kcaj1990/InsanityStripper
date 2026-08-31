@@ -13,11 +13,9 @@ import server.model.shops.ShopAssistant;
 import server.net.HostList;
 import server.net.Packet;
 import server.net.StaticPacketBuilder;
+import server.net.packet.PacketHandler;
 import server.util.Misc;
 import server.util.Stream;
-import server.event.EventManager;
-import server.event.Event;
-import server.event.EventContainer;
 
 public class Client extends Player {
 

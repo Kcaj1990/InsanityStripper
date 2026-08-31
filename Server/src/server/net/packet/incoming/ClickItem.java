@@ -1,0 +1,27 @@
+package server.net.packet.incoming;
+
+import server.model.players.Client;
+import server.net.packet.PacketType;
+
+
+/**
+ * Clicking an item, bury bone, eat food etc
+ **/
+public class ClickItem implements PacketType {
+
+	@Override
+	public void processPacket(Client c, int packetType, int packetSize) {
+		int junk = c.getInStream().readSignedWordBigEndianA();
+		int itemSlot = c.getInStream().readUnsignedWordA();
+		int itemId = c.getInStream().readUnsignedWordBigEndian();
+		if (itemId != c.playerItems[itemSlot] - 1) {
+			return;
+		}
+		if (c.getFood().isFood(itemId))
+			c.getFood().eat(itemId,itemSlot);
+		if (c.getPotions().isPotion(itemId))
+			c.getPotions().handlePotion(itemId,itemSlot);
+
+	}
+
+}
