@@ -1,4 +1,4 @@
-package server.content.food;
+package server.content.consumables.food;
 
 import server.model.players.Client;
 

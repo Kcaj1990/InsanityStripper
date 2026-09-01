@@ -1,5 +1,5 @@
 @echo off
 Title Project Insanity Server - Building...
 if not exist bin mkdir bin
-Javac -Xlint:unchecked -classpath deps/log4j-1.2.15.jar;deps/mina.jar;deps/slf4j.jar;deps/slf4j-nop.jar -d bin src\server\event\*.java src\server\model\items\*.java src\server\model\npcs\*.java src\server\model\objects\*.java src\server\model\players\*.java src\server\persistence\player\*.java src\server\content\dialogue\*.java src\server\content\food\*.java src\server\net\packet\*.java src\server\net\packet\incoming\*.java src\server\model\shops\*.java src\server\net\*.java src\server\util\*.java src\server\world\*.java src\server\util\log\*.java src\server\*.java src\server\world\map\*.java
+Javac -Xlint:unchecked -classpath deps/log4j-1.2.15.jar;deps/mina.jar;deps/slf4j.jar;deps/slf4j-nop.jar -d bin src\server\event\*.java src\server\model\items\*.java src\server\model\npcs\*.java src\server\model\objects\*.java src\server\model\players\*.java src\server\persistence\player\*.java src\server\content\dialogue\*.java src\server\content\consumables\food\*.java src\server\content\consumables\potions\*.java src\server\net\packet\*.java src\server\net\packet\incoming\*.java src\server\model\shops\*.java src\server\net\*.java src\server\util\*.java src\server\world\*.java src\server\util\log\*.java src\server\*.java src\server\world\map\*.java
 pause

@@ -8,8 +8,10 @@ import org.apache.mina.common.IoSession;
 
 import server.Config;
 import server.Server;
+import server.content.consumables.potions.PotionMixing;
+import server.content.consumables.potions.Potions;
 import server.content.dialogue.DialogueHandler;
-import server.content.food.Food;
+import server.content.consumables.food.Food;
 import server.model.items.ItemAssistant;
 import server.model.shops.ShopAssistant;
 import server.net.HostList;

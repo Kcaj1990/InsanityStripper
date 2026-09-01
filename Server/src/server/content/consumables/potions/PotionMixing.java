@@ -1,4 +1,6 @@
-package server.model.players;
+package server.content.consumables.potions;
+
+import server.model.players.Client;
 
 /**
  * @author Sanity
